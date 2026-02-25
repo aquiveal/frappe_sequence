@@ -77,10 +77,11 @@ app_license = "mit"
 # ----------
 
 # add methods and filters to jinja environment
-# jinja = {
-# 	"methods": "frappe_sequence.utils.jinja_methods",
-# 	"filters": "frappe_sequence.utils.jinja_filters"
-# }
+jinja = {
+	"methods": [
+		"frappe_sequence.utils.jinja.get_sequence_message"
+	]
+}
 
 # Installation
 # ------------
@@ -132,13 +133,24 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"CRM Lead": {
+		"on_update": [
+			"frappe_sequence.doctype.sequence_contact.sequence_contact.update_apollo_ref_code",
+			"frappe_sequence.doctype.sequence_email.sequence_email.update_apollo_ref_code"
+		]
+	},
+	"Sequence": {
+		"on_update": [
+			"frappe_sequence.doctype.sequence_contact.sequence_contact.update_sequence_apollo_ref_code"
+		]
+	},
+	"Sequence Contact": {
+		"on_update": [
+			"frappe_sequence.doctype.sequence_email.sequence_email.update_sequence_apollo_ref_code"
+		]
+	}
+}
 
 # Scheduled Tasks
 # ---------------
@@ -253,3 +265,6 @@ require_type_annotated_api_methods = True
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+fixtures = [
+	{"dt": "Custom Field", "filters": [["module", "=", "Sequence"]]}
+]
