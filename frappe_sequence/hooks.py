@@ -136,18 +136,18 @@ jinja = {
 doc_events = {
 	"CRM Lead": {
 		"on_update": [
-			"frappe_sequence.doctype.sequence_contact.sequence_contact.update_apollo_ref_code",
-			"frappe_sequence.doctype.sequence_email.sequence_email.update_apollo_ref_code"
+			"frappe_sequence.sequence.doctype.sequence_contact.sequence_contact.update_apollo_ref_code",
+			"frappe_sequence.sequence.doctype.sequence_email.sequence_email.update_apollo_ref_code"
 		]
 	},
 	"Sequence": {
 		"on_update": [
-			"frappe_sequence.doctype.sequence_contact.sequence_contact.update_sequence_apollo_ref_code"
+			"frappe_sequence.sequence.doctype.sequence_contact.sequence_contact.update_sequence_apollo_ref_code"
 		]
 	},
 	"Sequence Contact": {
 		"on_update": [
-			"frappe_sequence.doctype.sequence_email.sequence_email.update_sequence_apollo_ref_code"
+			"frappe_sequence.sequence.doctype.sequence_email.sequence_email.update_sequence_apollo_ref_code"
 		]
 	}
 }
